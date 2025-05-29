@@ -1,0 +1,19 @@
+import { expect } from '@wdio/globals'
+
+describe('Open Screen using current Activity ', () => {
+  
+    it('Navigate to App/Search/Invoke Search Screen', async () => {  
+    
+
+        await driver.startActivity(
+            "io.appium.android.apis",
+            "io.appium.android.apis" + ".app.SearchInvoke",
+        );
+
+        ".view.Gallery1"
+
+        await driver.pause(3000);
+
+    })
+
+})

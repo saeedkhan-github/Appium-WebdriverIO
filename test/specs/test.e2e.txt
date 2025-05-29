@@ -1,0 +1,51 @@
+import { expect } from '@wdio/globals'
+
+describe('Android App Testing', () => {
+    it.skip('should launch the app successfully', async () => {
+        // Wait for app to load
+        await driver.pause(3000)
+        
+        // Get the current activity
+        const currentActivity = await driver.getCurrentActivity()
+        
+        // Verify app launched successfully
+        expect(currentActivity).not.toBe(null)
+        //android.widget.TextView[@text="󰍂"]
+        await $('//android.widget.TextView[@text="󰍂"]').click();
+        await $('~input-email').setValue('testwebdriver.io');
+        await $('~input-password').setValue('Test1234!');
+        await $('//android.view.ViewGroup[@content-desc="button-LOGIN"]/android.view.ViewGroup').click();
+        // const errorMsg =await $('//android.widget.TextView[@text="Please ent a valid email address"]');
+       
+        await expect(await $('//android.widget.TextView[@text="Please enter a valid email address"]').getText()).
+        toContain('Please enter a valid email address');
+        
+        await driver.pause(3000);
+    })
+
+    it('Using UISelctor class to find elements', async () => {  
+        await $('android=new UiSelector().text("Webview")').click();
+
+        await driver.pause(3000);
+
+    })
+
+  
+
+    // Add more test cases here based on your app's functionality
+    // Example:
+    /*
+    it('should login successfully', async () => {
+        const usernameField = await $('~username-input')  // ~ means accessibility id
+        const passwordField = await $('~password-input')
+        const loginButton = await $('~login-button')
+
+        await usernameField.setValue('testuser')
+        await passwordField.setValue('password123')
+        await loginButton.click()
+
+        const welcomeMessage = await $('~welcome-message')
+        await expect(welcomeMessage).toBeDisplayed()
+    })
+    */
+})
